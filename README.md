@@ -38,6 +38,7 @@ on Firefox.
 
 ### Usage ###
 PAC file usage can be boiled down to two steps:
+
 1. Download the PAC file or copy the URL: https://raw.github.com/EvilRenegade/BlitzShark/master/blitzshark.pac
 2. Set your browser to use the PAC file from your preferred location, either where
    you downloaded it to, or the URL you copied.
@@ -55,6 +56,7 @@ paste the location of the PAC file into the "Address" text field. Then click OK,
 
 ### Benutzung ###
 Es sind im Endeffekt nur zwei Schritte noetig, um die PAC-Datei einzubinden:
+
 1. Laden Sie die PAC-Datei herunter oder kopieren Sie die URL: https://raw.github.com/EvilRenegade/BlitzShark/master/blitzshark.pac
 2. Stellen Sie Ihren Browser so ein, dass er die PAC-Datei benutzt; entweder von
    dem Ort, an den Sie sie heruntergeladen haben, oder von der kopierten URL.
