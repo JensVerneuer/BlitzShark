@@ -10,7 +10,7 @@ function FindProxyForURL(url, host) {
 		// alert('Proxy for host ' + host);
 		const HTTP_PROXIES = new Array(
 			// UK
-			'46.38.191.109:8080',
+//			'46.38.191.109:8080',
 			'46.23.70.176:3128',
 			'78.129.251.87:3128',
 			'89.32.145.117:3128',
