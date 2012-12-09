@@ -9,18 +9,19 @@ function FindProxyForURL(url, host) {
 	if(shExpMatch(host, GROOVESHARK) || (host === PLAIN_GS) || shExpMatch(host, GS_CDN)) {
 		// alert('Proxy for host ' + host);
 		const HTTP_PROXIES = new Array(
-			// France
-			'217.16.0.249:3128',
-			'37.59.123.176:3128',
-			'46.105.41.97:80',
-			'176.31.98.226:3128'
+			// Austria
+			'93.83.40.134:8080',
+			// Greece
+			'83.212.99.19:3128'
 		);
 		
 		const HTTPS_PROXIES = new Array(
-			// France
-			'217.16.0.249:3128',
-			'37.59.123.176:3128',
-			'194.51.100.37:443'
+			// UK
+			'91.85.155.165:443',
+			'194.105.160.59:443',
+			'83.104.209.81:443',
+			'217.205.178.130:443',
+			'81.138.170.27:443'
 		);
 		
 		var protocol = url.split(':', 1);
