@@ -9,10 +9,11 @@ function FindProxyForURL(url, host) {
 	if(shExpMatch(host, GROOVESHARK) || (host === PLAIN_GS) || shExpMatch(host, GS_CDN)) {
 		// alert('Proxy for host ' + host);
 		const HTTP_PROXIES = new Array(
-			// Austria
-			'93.83.40.134:8080',
-			// Greece
-			'83.212.99.19:3128'
+			// France
+			'37.59.236.42:3128',
+
+			// UK
+			'46.166.163.3:3128'
 		);
 		
 		const HTTPS_PROXIES = new Array(
