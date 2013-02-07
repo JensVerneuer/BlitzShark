@@ -11,7 +11,6 @@ function FindProxyForURL(url, host) {
 	if(isGrooveShark) {
 		const HTTP_PROXIES = new Array(
 			// France
-			'87.98.226.33:3128',
 			'93.17.234.38:80',
 			'5.39.119.105:3128',
 			'5.39.119.105:8080'
