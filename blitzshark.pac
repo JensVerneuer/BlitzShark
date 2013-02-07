@@ -15,7 +15,7 @@ function FindProxyForURL(url, host) {
 			// Turkey
 			'212.175.88.3:8080',
 			'176.117.96.25:8080',
-			'77.92.131.66:80',
+			//'77.92.131.66:80',
 			'195.175.76.246:8080'
 		);
 		
@@ -70,7 +70,7 @@ function FindProxyForURL(url, host) {
 		proxy = 'PROXY ' + proxyArray.join('; PROXY ');
 	}
 	
-	alert('Proxy for ' + host + ' via ' + protocol + ' is ' + proxy); // protocol will be undefined if we're not going to GS. That's fine.
+	//alert('Proxy for ' + host + ' via ' + protocol + ' is ' + proxy); // protocol will be undefined if we're not going to GS. That's fine.
 	return proxy;
 }
 
