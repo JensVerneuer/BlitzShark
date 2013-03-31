@@ -50,7 +50,7 @@ function FindProxyForURL(url, host) {
 		proxy = 'PROXY ' + proxyArray.join('; PROXY ');
 	}
 	
-	alert('Proxy for ' + host + ' via ' + protocol + ' is ' + proxy); // protocol will be undefined if we're not going to GS. That's fine.
+	//alert('Proxy for ' + host + ' via ' + protocol + ' is ' + proxy); // protocol will be undefined if we're not going to GS. That's fine.
 	return proxy;
 }
 
