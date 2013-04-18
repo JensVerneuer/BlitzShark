@@ -11,19 +11,17 @@ function FindProxyForURL(url, host) {
 	if(isGrooveShark) {
 		const HTTP_PROXIES = new Array(
 			// France
-			'178.33.173.34:3128',
-			'37.59.62.186:3128',
-			'188.165.204.152:3128',
-			'91.121.58.235:3128',
-			'178.33.38.178:3128'
+			'87.98.226.33:3128',
+			'178.33.38.178:3128',
+			'91.121.58.235:3128'
 		);
 		
 		const HTTPS_PROXIES = new Array(
 			// France
+			'178.33.105.59:3128',
+			'87.98.226.33:3128',
+			'91.121.184.131:3128',
 			'178.33.38.178:3128',
-			'178.33.173.34:3128',
-			'37.59.62.186:3128',
-			'188.165.204.152:3128',
 			'91.121.58.235:3128'
 		);
 		
@@ -50,7 +48,7 @@ function FindProxyForURL(url, host) {
 		proxy = 'PROXY ' + proxyArray.join('; PROXY ');
 	}
 	
-	//alert('Proxy for ' + host + ' via ' + protocol + ' is ' + proxy); // protocol will be undefined if we're not going to GS. That's fine.
+	alert('Proxy for ' + host + ' via ' + protocol + ' is ' + proxy); // protocol will be undefined if we're not going to GS. That's fine.
 	return proxy;
 }
 
