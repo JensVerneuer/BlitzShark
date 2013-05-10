@@ -11,16 +11,17 @@ function FindProxyForURL(url, host) {
 	if(isGrooveShark) {
 		const HTTP_PROXIES = new Array(
 			// France
-			'91.121.184.131:3128',
-			'178.33.38.178:3128',
-			'91.121.58.235:3128'
+			'176.31.243.54:3128',
+			// UK
+			'213.1.222.253:80'
 		);
 		
 		const HTTPS_PROXIES = new Array(
 			// France
-			'91.121.184.131:3128',
-			'178.33.38.178:3128',
-			'91.121.58.235:3128'
+			'176.31.243.54:3128',
+			// UK
+			'83.104.209.81:443',
+			'217.205.178.130:443'
 		);
 		
 		var protocol = url.split(':', 1);
