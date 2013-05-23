@@ -1,25 +1,40 @@
 function FindProxyForURL(url, host) {
 	const DIRECT = 'DIRECT';
 	
-	const GROOVESHARK = '*.grooveshark.com';
 	const PLAIN_GS = 'grooveshark.com';
-	const IMAGES_GS = 'images.grooveshark.com';
-	const RETRO_GS = 'retro.grooveshark.com';
-	const GS_CDN = '*.gs-cdn.net';
+	const PLAIN_CDN = 'gs-cdn.net';
 	var proxy = DIRECT;
 	
-	var isGrooveShark = shExpMatch(host, GROOVESHARK) || (host === PLAIN_GS) || shExpMatch(host, GS_CDN);
-	var shouldBeProxied = (host === PLAIN_GS) || (shExpMatch(host, GROOVESHARK) && !((host === IMAGES_GS) || (host === RETRO_GS)));
+	// no proxying for local net
+	if(isPlainHostName(host)) {
+		return DIRECT;
+	}
 	
-	if(shouldBeProxied) {
+	var isGrooveShark = dnsDomainIs(host, PLAIN_GS) || dnsDomainIs(host, PLAIN_CDN);
+	
+	if(!isGrooveShark) {
+		/*// For debugging purposes
+		if(url.endsWith('Proxychecker.html')) {
+			proxy = '85.125.107.18:443';
+			alert('Testing proxy ' + proxy);
+			return 'PROXY ' + proxy;
+		}*/
+		
+		return DIRECT;
+	} else {
+		//alert('Grooveshark url is "' + url + '"');
+		
+		var shouldBeProxied = url.endsWith('index.php') || url.endsWith('/');
+		
+		if(!shouldBeProxied) {
+			return DIRECT;
+		}
+		
 		const HTTP_PROXIES = new Array(
+			// France
+			'176.31.243.54:3128',
 			// Austria
-			'213.164.18.147:3128',
-			// Spain
-			'213.0.88.86:8080',
-			'217.16.255.81:3128', // good
-			//'217.13.118.93:80',
-			'212.92.46.60:80'
+			'213.164.18.147:3128'
 		);
 		
 		const HTTPS_PROXIES = new Array(
@@ -54,31 +69,14 @@ function FindProxyForURL(url, host) {
 			'212.92.46.60:80'
 		);
 		
-		var protocol = url.split(':', 1);
-		var proxyArray = null;
+		var isHttps = url.startsWith('https');
+		var proxyArray = randomSort(isHttps ? HTTPS_PROXIES : HTTP_PROXIES);
 		
-		if(protocol.length < 1) { // no protocol/schema in URL. This would be weird, but we're not taking chances
-			return proxy; // still 'DIRECT' at this point, leaving this non-hardcoded in case the default changes at some point
-		}
-		
-		protocol = protocol[0]; // the magic of weakly-typed languages
-		
-		switch(protocol) {
-			case 'http':
-				proxyArray = randomSort(HTTP_PROXIES);
-				break;
-			case 'https':
-				proxyArray = randomSort(HTTPS_PROXIES);
-				break;
-			default:
-				return proxy; // still 'DIRECT' at this point, leaving this non-hardcoded in case the default changes at some point
-		}
-	
 		proxy = 'PROXY ' + proxyArray.join('; PROXY ');
 		
-		alert('Proxy for ' + host + ' via ' + protocol + ' is ' + proxy + '; url was ' + url); // we're only ever debugging GS proxies anymore anyway
+		//alert('Proxy for ' + host + ' is ' + proxy + '; url was ' + url); // we're only ever debugging GS proxies anymore anyway
 	}
-
+	
 	return proxy;
 }
 
