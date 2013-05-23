@@ -3,19 +3,22 @@ function FindProxyForURL(url, host) {
 	
 	const GROOVESHARK = '*.grooveshark.com';
 	const PLAIN_GS = 'grooveshark.com';
+	const IMAGES_GS = 'images.grooveshark.com';
+	const RETRO_GS = 'retro.grooveshark.com';
 	const GS_CDN = '*.gs-cdn.net';
 	var proxy = DIRECT;
 	
 	var isGrooveShark = shExpMatch(host, GROOVESHARK) || (host === PLAIN_GS) || shExpMatch(host, GS_CDN);
+	var shouldBeProxied = (host === PLAIN_GS) || (shExpMatch(host, GROOVESHARK) && !((host === IMAGES_GS) || (host === RETRO_GS)));
 	
-	if(isGrooveShark) {
+	if(shouldBeProxied) {
 		const HTTP_PROXIES = new Array(
 			// Austria
 			'213.164.18.147:3128',
 			// Spain
 			'213.0.88.86:8080',
-			'217.16.255.81:3128',
-			'217.13.118.93:80',
+			'217.16.255.81:3128', // good
+			//'217.13.118.93:80',
 			'212.92.46.60:80'
 		);
 		
@@ -72,9 +75,10 @@ function FindProxyForURL(url, host) {
 		}
 	
 		proxy = 'PROXY ' + proxyArray.join('; PROXY ');
+		
+		alert('Proxy for ' + host + ' via ' + protocol + ' is ' + proxy + '; url was ' + url); // we're only ever debugging GS proxies anymore anyway
 	}
-	
-	alert('Proxy for ' + host + ' via ' + protocol + ' is ' + proxy); // protocol will be undefined if we're not going to GS. That's fine.
+
 	return proxy;
 }
 
