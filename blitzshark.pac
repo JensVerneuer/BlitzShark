@@ -23,8 +23,13 @@ function FindProxyForURL(url, host) {
 		return DIRECT;
 	} else {
 		//alert('Grooveshark url is "' + url + '"');
+		var cleanUrl = url;
 		
-		var shouldBeProxied = url.endsWith('index.php') || url.endsWith('/');
+		if(url.contains('#')) {
+			cleanUrl = url.substring(0, url.indexOf("#"));
+		}
+		
+		var shouldBeProxied = cleanUrl.endsWith('index.php') || cleanUrl.endsWith('/');
 		
 		if(!shouldBeProxied) {
 			return DIRECT;
@@ -69,12 +74,12 @@ function FindProxyForURL(url, host) {
 			'212.92.46.60:80'
 		);
 		
-		var isHttps = url.startsWith('https');
+		var isHttps = cleanUrl.startsWith('https');
 		var proxyArray = randomSort(isHttps ? HTTPS_PROXIES : HTTP_PROXIES);
 		
 		proxy = 'PROXY ' + proxyArray.join('; PROXY ');
 		
-		//alert('Proxy for ' + host + ' is ' + proxy + '; url was ' + url); // we're only ever debugging GS proxies anymore anyway
+		//alert('Proxy for ' + host + ' is ' + proxy + '; url was ' + url + ', cleaned up to ' + cleanUrl); // we're only ever debugging GS proxies anymore anyway
 	}
 	
 	return proxy;
