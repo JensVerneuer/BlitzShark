@@ -1,4 +1,5 @@
 function FindProxyForURL(url, host) {
+	alert('Finding Proxy');
 	const DIRECT = 'DIRECT';
 	
 	const PLAIN_GS = 'grooveshark.com';
