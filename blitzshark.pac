@@ -79,7 +79,7 @@ function FindProxyForURL(url, host) {
 		
 		proxy = 'PROXY ' + proxyArray.join('; PROXY ');
 		
-		//alert('Proxy for ' + host + ' is ' + proxy + '; url was ' + url + ', cleaned up to ' + cleanUrl); // we're only ever debugging GS proxies anymore anyway
+		alert('Proxy for ' + host + ' is ' + proxy + '; url was ' + url + ', cleaned up to ' + cleanUrl); // we're only ever debugging GS proxies anymore anyway
 	}
 	
 	return proxy;
